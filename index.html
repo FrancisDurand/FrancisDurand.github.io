@@ -3,102 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Francis Durand – PhD Student</title>
+  <title>Francis Durand – PhD Student in Combinatorics</title>
+  <meta name="description" content="Francis Durand, PhD student at LAGA, Université Sorbonne Paris Nord. Random generation of combinatorial structures, entropy-efficient sampling, analytic combinatorics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #fbfaf7;
+      --text: #1f2328;
+      --muted: #5f6670;
+      --rule: #e3e0d8;
+      --accent: #8a2b2b;
+      --accent-soft: #f3e7e4;
+      --card: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16181b;
+        --text: #e6e3dc;
+        --muted: #9aa0a8;
+        --rule: #2c3036;
+        --accent: #e09a8a;
+        --accent-soft: #2b2221;
+        --card: #1c1f23;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      font-family: system-ui, sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      line-height: 1.6;
-      background: #fdfdfd;
-      color: #222;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+      font-size: 1.08rem;
+      line-height: 1.65;
     }
-    h1, h2 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.3rem;
+    main { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.25rem 2rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    header { border-bottom: 1px solid var(--rule); padding-bottom: 1.6rem; margin-bottom: 2rem; }
+    h1 { font-size: 2.4rem; font-weight: 600; margin: 0 0 .2rem; letter-spacing: -0.01em; }
+    .role { font-family: Inter, system-ui, sans-serif; font-size: .95rem; color: var(--muted); margin: 0 0 1rem; }
+    .links { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; }
+    .links a {
+      font-family: Inter, system-ui, sans-serif; font-size: .85rem; font-weight: 500;
+      display: inline-block; padding: .3rem .75rem; border: 1px solid var(--rule);
+      border-radius: 999px; color: var(--text); background: var(--card);
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
+    .links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    h2 {
+      font-family: Inter, system-ui, sans-serif; font-size: .8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .12em; color: var(--accent);
+      margin: 2.6rem 0 1rem;
     }
-    a:hover {
-      text-decoration: underline;
+    h3 { font-family: Inter, system-ui, sans-serif; font-size: .9rem; font-weight: 600; color: var(--muted); margin: 1.6rem 0 .6rem; }
+    p { margin: 0 0 1rem; }
+    em.key { font-style: italic; color: var(--accent); }
+
+    .interests { display: flex; flex-wrap: wrap; gap: .45rem; padding: 0; margin: 0; list-style: none; }
+    .interests li {
+      font-family: Inter, system-ui, sans-serif; font-size: .82rem;
+      background: var(--accent-soft); color: var(--text); padding: .25rem .7rem; border-radius: 6px;
     }
-    ul {
-      padding-left: 1.5rem;
+
+    ol.pubs, ul.talks, ul.plain { list-style: none; padding: 0; margin: 0; }
+    .pubs li { padding: .9rem 0; border-bottom: 1px solid var(--rule); }
+    .pubs li:last-child { border-bottom: 0; }
+    .venue {
+      font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600;
+      color: var(--accent); border: 1px solid var(--accent); border-radius: 4px;
+      padding: .05rem .4rem; margin-right: .4rem; white-space: nowrap; vertical-align: .1em;
     }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9em;
-      color: #666;
+    .title { font-weight: 600; }
+    .authors, .meta { display: block; color: var(--muted); font-size: .95rem; }
+    .meta a { font-family: Inter, system-ui, sans-serif; font-size: .82rem; margin-right: .7rem; }
+    .new { font-family: Inter, system-ui, sans-serif; font-size: .7rem; font-weight: 600; color: var(--bg); background: var(--accent); border-radius: 4px; padding: .05rem .4rem; margin-left: .3rem; vertical-align: .15em; }
+
+    .talks li { display: grid; grid-template-columns: 5.5rem 1fr; gap: .8rem; padding: .45rem 0; }
+    .talks .when { font-family: Inter, system-ui, sans-serif; font-size: .82rem; color: var(--muted); padding-top: .2rem; }
+    .talks .what { display: block; }
+    .talks .detail { display: block; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 520px) {
+      .talks li { grid-template-columns: 1fr; gap: 0; }
+      h1 { font-size: 2rem; }
     }
+    .plain li { padding: .3rem 0; }
+
+    footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); font-family: Inter, system-ui, sans-serif; font-size: .8rem; color: var(--muted); }
   </style>
 </head>
 <body>
+<main>
 
-  <h1>Francis Durand</h1>
-  <p>
-    I'm a first-year PhD student in mathematics and theoretical computer science, working on combinatorics.
-    I’m particularly interested in random generation, symbolic methods, and the interface between combinatorics and probability.
-    In particular, I work on generating structures in a <strong>quasi-entropic</strong> manner, that is, with a consumption in random bits close to the theoretical minimum amout, given by the Shannon's information limit.
-  </p>
+  <header>
+    <h1>Francis Durand</h1>
+    <p class="role">PhD student in combinatorics · LAGA, Université Sorbonne Paris Nord · advised by <a href="https://lipn.univ-paris13.fr/~bodini/">Olivier Bodini</a></p>
+    <ul class="links">
+      <li><a href="mailto:francis.durand@ens-paris-saclay.fr">Email</a></li>
+      <li><a href="https://github.com/francisdurand">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/francis-durand-1784a9187">LinkedIn</a></li>
+      <li><a href="https://orcid.org/0009-0004-4146-0289">ORCID</a></li>
+    </ul>
+  </header>
 
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Random generation of combinatorial structures</li>
-    <li>Symbolic combinatorics and generating functions</li>
-    <li>Probabilistic combinatorics</li>
-    <li>Structures obtained by repeated grafting</li>
-  </ul>
+  <section>
+    <h2>About</h2>
+    <p>
+      I am a third-year PhD student in mathematics and theoretical computer science (2024–2027).
+      I work on the <strong>exact uniform random generation</strong> of combinatorial structures, at the interface between
+      analytic combinatorics, probability and algorithms.
+    </p>
+    <p>
+      My main goal is to sample large structures in a <em class="key">quasi-entropic</em> way: using a number of random bits
+      as close as possible to the information-theoretic minimum given by Shannon's entropy, while keeping an optimal running time.
+      Recent work covers set partitions and their generalisations (Dobiński structures), increasing trees,
+      simply generated trees and binary words with a fixed number of ones.
+    </p>
+    <ul class="interests">
+      <li>Random generation</li>
+      <li>Random-bit complexity</li>
+      <li>Analytic combinatorics</li>
+      <li>Generating functions &amp; symbolic methods</li>
+      <li>Probabilistic combinatorics</li>
+      <li>Repeated grafting &amp; normal ordering</li>
+    </ul>
+  </section>
 
-  <h2>Publications</h2>
-  <ul>
-    <li>
-      <strong>Optimal Random Bit Complexity in Efficient Sampling of Set Partition-Like Structures</strong><br />
-      with Olivier Bodini 2025.  
-      <br />
-      [<a href="https://link.springer.com/chapter/10.1007/978-3-031-98740-3_29">link</a>]
-    </li>
-    <li>
-      <strong>Optimal Generation of Strictly Increasing Binary Trees and Beyond</strong><br />
-      with Olivier Bodini, and Philippe Marchal 2024.  
-      <br />
-      [<a href="https://arxiv.org/abs/2406.16396">arXiv</a>] [<a href="
-      https://doi.org/10.48550/arXiv.2406.16396">DOI</a>]
-    </li>
-  </ul>
+  <section>
+    <h2>Publications</h2>
+    <ol class="pubs">
+      <li>
+        <span class="venue">Journal</span><span class="title">Dobiński Structures and Samplers</span><span class="new">to appear</span>
+        <span class="authors">with Olivier Bodini</span>
+        <span class="meta">Journal version, forthcoming. Extended version of the IWOCA 2025 paper: a general framework for sampling structures obtained by repeated grafting (set partitions, (r,s)-Stirling structures, rook placements, partial injections…).</span>
+      </li>
+      <li>
+        <span class="venue">AofA 2026</span><span class="title">Efficient Sampling of Increasing Trees</span>
+        <span class="authors">with Nadja Azzouz, Olivier Bodini and Bernhard Gittenberger</span>
+        <span class="meta">LIPIcs, AofA 2026, article 3.
+          <a href="https://doi.org/10.4230/LIPIcs.AofA.2026.3">DOI</a><a href="https://hal.science/hal-05727359">HAL</a></span>
+      </li>
+      <li>
+        <span class="venue">AofA 2026</span><span class="title">Asymptotic Analysis of Generating Functions Arising from Dynamic Graphs</span>
+        <span class="authors">with Nadja Azzouz, Olivier Bodini and Bernhard Gittenberger</span>
+        <span class="meta">LIPIcs, AofA 2026, article 30.
+          <a href="https://doi.org/10.4230/LIPIcs.AofA.2026.30">DOI</a><a href="https://hal.science/hal-05727365">HAL</a></span>
+      </li>
+      <li>
+        <span class="venue">GASCom 2026</span><span class="title">Entropic Generation of Binary Words</span>
+        <span class="authors">with Olivier Bodini</span>
+        <span class="meta">EPTCS 445, pp. 38–46.
+          <a href="https://doi.org/10.4204/EPTCS.445.6">DOI</a><a href="https://arxiv.org/abs/2606.13157">arXiv</a></span>
+      </li>
+      <li>
+        <span class="venue">IWOCA 2025</span><span class="title">Optimal Random Bit Complexity in Efficient Sampling of Set Partition-Like Structures</span>
+        <span class="authors">with Olivier Bodini</span>
+        <span class="meta">LNCS 15885, pp. 405–417, Springer.
+          <a href="https://doi.org/10.1007/978-3-031-98740-3_29">DOI</a><a href="https://hal.science/hal-05727328">HAL</a></span>
+      </li>
+      <li>
+        <span class="venue">GASCom 2024</span><span class="title">Optimal Generation of Strictly Increasing Binary Trees and Beyond</span>
+        <span class="authors">with Olivier Bodini and Philippe Marchal</span>
+        <span class="meta">
+          <a href="https://arxiv.org/abs/2406.16396">arXiv</a><a href="https://doi.org/10.48550/arXiv.2406.16396">DOI</a></span>
+      </li>
+    </ol>
 
-  <h2>Talks & Presentations</h2>
-  <ul>
-    <li>Séminaire CALIN du LIPN – Iterated grafting operators and preferential attachment graph models [<a href="https://lipn.univ-paris13.fr/~banderier/Seminaires/resume.php?L=1715">Link</a>]</li>
-    <li>EUROComb 2025 – Poster Presentation: Efficient Random-Bit Algorithms for Uniform Involutions [<a href="EUROComb_2025_Durand_Poster.pdf">Poster</a>]</li>
-    <li>ICECA 2025 – A random sampler for rook placements in Ferrers board [<a href="https://www.youtube.com/watch?v=YX8pU8eEIL4">Youtube</a>]</li>
-    <li>ICSP 2025 – Relative Value Iteration for Infinite-Horizon SDDP: Application to Hydroelectric Problem</li>
-    <li>IWOCA 2025 – Optimal Random Bit Complexity in Efficient Sampling of Set Partition-Like Structures</li>
-    <li>ROADEF 2025 (ENPC, February 2025) – Finalist of the "Prix du mémoire de Master RO/AD", the ROADEF award for best Operation Research Masters</li>
-    <li>PGMO 2024 (EDF, November 2024) – Relative Value Iteration for Infinite-Horizon SDDP:
-      Application to Hydroelectric Problem</li>
-    <li>GASCom 2024 (Bordeaux, June 2024) – Optimal Generation of Strictly Increasing Binary Trees and Beyond</li>
-  </ul>
+    <h3>Operations research</h3>
+    <ol class="pubs">
+      <li>
+        <span class="venue">ICSP 2025</span><span class="title">Relative Value Iteration for Infinite-Horizon SDDP: Application to Hydroelectric Problem</span>
+        <span class="authors">with B. Freitas Paulo da Costa, M. Azéma and V. Leclère</span>
+      </li>
+    </ol>
+  </section>
 
-  <h2>Teaching & Supervision</h2>
-  <ul>
-    <li>Architecture des Ordinateurs – L2 Info Univérsité Sorbonne Paris-Nord – [<a href="https://www.irif.fr/~carton/Enseignement/Architecture/">Teaching the Basics of assembly, based on this course by Olivier Carton</a>]</li>
-    <li>Supervised 2 high school students for a 2-week internship on combinatorics (Spring 2025)</li>
-  </ul>
+  <section>
+    <h2>Talks &amp; Presentations</h2>
+    <ul class="talks">
+      <li><span class="when">2026</span><span><span class="what">Journées Montoises 2026, Naples</span><span class="detail">Entropic exact-size tree sampling via a continuous relaxation of the degree profile distribution</span></span></li>
+      <li><span class="when">2026</span><span><span class="what">ANR–FWF PAnDAG project meeting</span><span class="detail">Entropic generation of binary words</span></span></li>
+      <li><span class="when">2026</span><span><span class="what">GASCom 2026</span><span class="detail">Entropic Generation of Binary Words</span></span></li>
+      <li><span class="when">Jun 2026</span><span><span class="what">AofA 2026, Munich</span><span class="detail">Efficient Sampling of Increasing Trees</span></span></li>
+      <li><span class="when">Mar 2026</span><span><span class="what">Aléa days, CIRM</span><span class="detail">Efficient Sampling of Increasing Trees</span></span></li>
+      <li><span class="when">Jul 2025</span><span><span class="what">IWOCA 2025, Bozeman</span><span class="detail">Optimal Random Bit Complexity in Efficient Sampling of Set Partition-Like Structures</span></span></li>
+      <li><span class="when">2025</span><span><span class="what">EUROComb 2025 — poster</span><span class="detail">Efficient Random-Bit Algorithms for Uniform Involutions · <a href="EUROComb_2025_Durand_Poster.pdf">Poster</a></span></span></li>
+      <li><span class="when">2025</span><span><span class="what">ICECA 2025</span><span class="detail">A random sampler for rook placements in Ferrers boards · <a href="https://www.youtube.com/watch?v=YX8pU8eEIL4">Video</a></span></span></li>
+      <li><span class="when">2025</span><span><span class="what">ICSP 2025</span><span class="detail">Relative Value Iteration for Infinite-Horizon SDDP: Application to Hydroelectric Problem</span></span></li>
+      <li><span class="when">Feb 2025</span><span><span class="what">ROADEF 2025, ENPC</span><span class="detail">Finalist of the “Prix du mémoire de Master RO/AD” (best Master's thesis in Operations Research)</span></span></li>
+      <li><span class="when">Nov 2024</span><span><span class="what">PGMO Days 2024, EDF</span><span class="detail">Relative Value Iteration for Infinite-Horizon SDDP: Application to Hydroelectric Problem</span></span></li>
+      <li><span class="when">Jun 2024</span><span><span class="what">GASCom 2024, Bordeaux</span><span class="detail">Optimal Generation of Strictly Increasing Binary Trees and Beyond</span></span></li>
+      <li><span class="when">—</span><span><span class="what">Séminaire CALIN, LIPN</span><span class="detail">Iterated grafting operators and preferential attachment graph models · <a href="https://lipn.univ-paris13.fr/~banderier/Seminaires/resume.php?L=1715">Abstract</a></span></span></li>
+    </ul>
+  </section>
 
-  <h2>Friends & Colleagues</h2>
-  <ul>
-    <li><a href="https://www.irif.fr/~cpujol/">Cyril Pujol</a></li>
-    <li><a href="https://www.irif.fr/~objois/">Étienne Objois</a></li>
-    <li><a href="https://lipn.univ-paris13.fr/~bodini/">Olivier Bodini</a> – My advisor</li>
-  </ul>
+  <section>
+    <h2>Teaching &amp; Supervision</h2>
+    <ul class="plain">
+      <li><strong>Architecture des ordinateurs</strong> — L2 Informatique, Université Sorbonne Paris Nord. Basics of assembly, based on <a href="https://www.irif.fr/~carton/Enseignement/Architecture/">Olivier Carton's course</a>.</li>
+      <li>Supervised two high-school students for a two-week internship in combinatorics (spring 2025).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Funding</h2>
+    <p>My research is supported by the ANR–FWF project <strong>PAnDAG</strong> (ANR-23-CE48-0014).</p>
+  </section>
+
+  <section>
+    <h2>Friends &amp; Colleagues</h2>
+    <ul class="plain">
+      <li><a href="https://lipn.univ-paris13.fr/~bodini/">Olivier Bodini</a> — my advisor</li>
+      <li><a href="https://www.irif.fr/~cpujol/">Cyril Pujol</a></li>
+      <li><a href="https://www.irif.fr/~objois/">Étienne Objois</a></li>
+    </ul>
+  </section>
 
   <footer>
-    © 2026 Francis Durand — Hosted on <a href="https://github.io">GitHub Pages</a>
+    © 2026 Francis Durand · Last updated October 2026 · Hosted on <a href="https://pages.github.com">GitHub Pages</a>
   </footer>
 
+</main>
 </body>
 </html>
-
